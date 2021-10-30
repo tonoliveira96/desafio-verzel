@@ -20,7 +20,7 @@ routes.delete("/cars/:id", Cars.remove);
 
 routes.get("/users", Users.index);
 routes.get("/users/:id", Users.show);
-routes.post("/users", upload.array("images"), Users.create);
+routes.post("/users", Users.create);
 
 
 

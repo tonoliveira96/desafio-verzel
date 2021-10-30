@@ -4,7 +4,6 @@ import {
     PrimaryGeneratedColumn,
     OneToMany,
     JoinColumn,
-    ManyToOne,
 } from "typeorm";
 
 import Image from "./Images";
