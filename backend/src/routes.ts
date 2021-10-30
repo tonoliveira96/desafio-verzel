@@ -13,7 +13,7 @@ const upload = multer(uploadConfig);
 routes.post("/session", Session.index);
 routes.get("/cars", Cars.index);
 
-routes.use(ensureAutheticated)
+//routes.use(ensureAutheticated)
 routes.get("/cars/:id", Cars.show);
 routes.post("/cars", upload.array("images"), Cars.create);
 routes.delete("/cars/:id", Cars.remove);
