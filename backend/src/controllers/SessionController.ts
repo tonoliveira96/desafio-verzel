@@ -3,27 +3,30 @@ import { compare } from "bcryptjs";
 
 import { getRepository } from "typeorm";
 import Users from "../models/Users";
-import * as Yup from "yup";
-
-import userView from "../views/Users_views";
+import { sign } from "jsonwebtoken";
 
 export default {
-  async show(request: Request, response: Response) {
-    const { email, password } = request.params;
+  async index(request: Request, response: Response) {
+    const { email, password } = request.body;
     const usersRepository = getRepository(Users);
 
     const users = await usersRepository.findOne({ where: { email: email } });
 
     if (!users) {
-      throw new Error("Email/senha não conferem");
+      return response.status(401).send({ message: "Email/senha não conferem" });
     }
 
-    const passwordMacth = compare(password, users.password);
-
+    const passwordMacth = await compare(password, users.password);
+    console.log(passwordMacth)
     if (!passwordMacth) {
-      throw new Error("Email/senha não conferem");
+      return response.status(401).send({ message: "Email/senha não conferem" });
     }
 
-    return response.json({ ok: true });
+    const token = sign({}, "b4c2fbb4685c22e16dd5bfcd78bb721c",{
+      subject: String(users.id),
+      expiresIn:'1d'
+    });
+
+    return response.json({users, token: token});
   },
 };
