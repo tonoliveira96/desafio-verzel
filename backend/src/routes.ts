@@ -16,6 +16,7 @@ routes.get("/cars", Cars.index);
 routes.use(ensureAutheticated)
 routes.get("/cars/:id", Cars.show);
 routes.post("/cars", upload.array("images"), Cars.create);
+routes.delete("/cars/:id", Cars.remove);
 
 routes.get("/users", Users.index);
 routes.get("/users/:id", Users.show);

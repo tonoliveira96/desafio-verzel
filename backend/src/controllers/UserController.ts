@@ -59,6 +59,8 @@ export default {
 
     await usersRepository.save(users);
 
+    
+
     return response.status(201).json(users);
   },
 };
