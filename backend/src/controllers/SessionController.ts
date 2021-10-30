@@ -4,6 +4,7 @@ import { compare } from "bcryptjs";
 import { getRepository } from "typeorm";
 import Users from "../models/Users";
 import { sign } from "jsonwebtoken";
+import authConfig from "../config/auth"
 
 export default {
   async index(request: Request, response: Response) {
@@ -17,12 +18,12 @@ export default {
     }
 
     const passwordMacth = await compare(password, users.password);
-    console.log(passwordMacth)
+  
     if (!passwordMacth) {
       return response.status(401).send({ message: "Email/senha não conferem" });
     }
 
-    const token = sign({}, "b4c2fbb4685c22e16dd5bfcd78bb721c",{
+    const token = sign({}, authConfig.jwt.secret,{
       subject: String(users.id),
       expiresIn:'1d'
     });
