@@ -11,23 +11,23 @@ export default {
     const { email, password } = request.body;
     const usersRepository = getRepository(Users);
 
-    const users = await usersRepository.findOne({ where: { email: email } });
+    const user = await usersRepository.findOne({ where: { email: email } });
 
-    if (!users) {
+    if (!user) {
       return response.status(401).send({ message: "Email/senha não conferem" });
     }
 
-    const passwordMacth = await compare(password, users.password);
+    const passwordMacth = await compare(password, user.password);
   
     if (!passwordMacth) {
       return response.status(401).send({ message: "Email/senha não conferem" });
     }
 
     const token = sign({}, authConfig.jwt.secret,{
-      subject: String(users.id),
+      subject: String(user.id),
       expiresIn:'1d'
     });
 
-    return response.json({users, token: token});
+    return response.json({user, token: token});
   },
 };
