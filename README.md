@@ -42,3 +42,12 @@ Após a instalação do expo, chegou a hora de iniciar o app.
 3. Abrirá uma aba no navegar com um QR Code.
 4. Caso prefira testar no seu dispositivo abra o Expo Go e escanei o QR Code que irá aparecer(RECOMENDADO).
 5. Caso tenha um emulador aberto no computador ele irá instalar o client do Expo automaticamente esse processo pode ser mais demorado.
+
+# Horas de projeto
+
+| Data  | Horas  |   |   |   |
+|---|---|---|---|---|
+| 28/10  | 4hr|   |   |   |
+| 29/10  | 4hr|   |   |
+| 30/10  | 8hr|   |   |   |
+| 30/10  | 6hr|   |   |   |
